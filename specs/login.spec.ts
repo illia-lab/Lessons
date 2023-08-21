@@ -6,14 +6,6 @@ const { browser } = provider;
 const { $ } = provider.elementInterface;
 const { waitForCondition } = provider.waiters;
 
-const waitLoginForm = async () => {
-  await waitForCondition(async () => await $('.login_form').isDisplayed(), {
-    timeout: 5000,
-    message: 'Login form is not visible',
-  });
-};
-
-
 
 describe('Login test suite', async () => {
   beforeEach('Set up', async () => {
@@ -24,13 +16,11 @@ describe('Login test suite', async () => {
   });
 
   it('Admin Success test', async () => {
-		await waitLoginForm();
 		await new LoginFragment().login({username: 'admin', password: 'admin'})
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed());
   });
-  it.only('User Success test', async () => {
-		await waitLoginForm();
+  it('User Success test', async () => {
 		await new LoginFragment().login({username: 'Test', password: 'Test'})
     await waitForCondition(async () => await $('#table_page').isDisplayed());
 		await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
