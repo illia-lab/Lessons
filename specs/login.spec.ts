@@ -1,11 +1,9 @@
-
-import {provider} from '../framework';
-import {LoginFragment} from '../framework/fragments'
+import { provider } from '../framework';
+import { LoginFragment } from '../framework/fragments';
 
 const { browser } = provider;
 const { $ } = provider.elementInterface;
 const { waitForCondition } = provider.waiters;
-
 
 describe('Login test suite', async () => {
   beforeEach('Set up', async () => {
@@ -16,15 +14,13 @@ describe('Login test suite', async () => {
   });
 
   it('Admin Success test', async () => {
-		await new LoginFragment().login({username: 'admin', password: 'admin'})
+    await new LoginFragment().login({ username: 'admin', password: 'admin' });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed());
   });
   it('User Success test', async () => {
-		await new LoginFragment().login({username: 'Test', password: 'Test'})
+    await new LoginFragment().login({ username: 'Test', password: 'Test' });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
-		await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
-
-
+    await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
   });
 });

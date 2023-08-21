@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'specs/**/*.spec.ts' --require ts-node/register --file ./lauch/index.ts --timeout 500000"
+    "test": "ENGINE=pw mocha 'specs/**/*.spec.ts' --require ts-node/register --file ./lauch/index.ts --timeout 500000"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
-import type {PromodElementType} from 'promod/built/interface';
-import {BaseFragment} from '../../lib'
+import type { PromodElementType } from 'promod/built/interface';
+import { BaseFragment } from '../../lib';
 import { $$ } from '../../lauch/engine';
 
-class MechineListRowFragment extends BaseFragment{
+class MechineListRowFragment extends BaseFragment {
   root: PromodElementType;
   manuFacturer: PromodElementType;
   workVolume: PromodElementType;
@@ -11,8 +11,9 @@ class MechineListRowFragment extends BaseFragment{
   Mass: PromodElementType;
   TractorPower: PromodElementType;
   Price: PromodElementType;
+
   constructor(index: number) {
-    super($$('#table_page > div.machies_list_section > table > tbody > tr').get(index))
+    super($$('#table_page > div.machies_list_section > table > tbody > tr').get(index));
 
     this.manuFacturer = this.root.$('td:nth-child(1) span');
     this.workVolume = this.root.$('td:nth-child(2)');
@@ -23,6 +24,11 @@ class MechineListRowFragment extends BaseFragment{
     this.Price = this.root.$('td:nth-child(7)');
   }
 
+  /**
+   * метод який бере текст із селекторів та використовується в подальших цілях
+   * @param {void} void не має атрибутів чи пераметрів
+   * @returns {string} повертає шуканні данні в нашому випадк ті що в классі
+   */
 
   async getMachineData() {
     await this.WaitFotFragmentReady();
