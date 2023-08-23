@@ -12,9 +12,8 @@ class MechineListRowFragment extends BaseFragment {
   TractorPower: PromodElementType;
   Price: PromodElementType;
 
-  constructor(index: number) {
-    super($$('#table_page > div.machies_list_section > table > tbody > tr').get(index));
-
+  constructor(selector) {
+    super(selector);
     this.manuFacturer = this.root.$('td:nth-child(1) span');
     this.workVolume = this.root.$('td:nth-child(2)');
     this.Length = this.root.$('td:nth-child(3)');
@@ -27,10 +26,10 @@ class MechineListRowFragment extends BaseFragment {
   /**
    * метод який бере текст із селекторів та використовується в подальших цілях
    * @param {void} void не має атрибутів чи пераметрів
-   * @returns {string} повертає шуканні данні в нашому випадк ті що в классі
+   * @returns {string} повертає шуканні данні в нашому випадку ті що в классі
    */
 
-  async getMachineData() {
+  async getData() {
     await this.WaitFotFragmentReady();
     return {
       manuFacturer: await this.manuFacturer.getText(),

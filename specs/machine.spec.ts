@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { sleep, lengthToIndexesArray, asyncMap } from 'sat-utils';
 import { provider } from '../framework';
 import { LoginFragment, MechineListRowFragment, MachineFiltersFragment } from '../framework/fragments';
+import { CollectionFragment } from '../framework/fragments/collection.frag';
 
 const { browser } = provider;
 const { $$, $ } = provider.elementInterface;
@@ -20,15 +21,14 @@ describe('Login test suite', async () => {
     await new LoginFragment().login({ username: 'admin', password: 'admin' });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await new MachineFiltersFragment().filter({ manuFacturer: filterManufacturer });
-    const allAviableMachineRowsCount = $$('#table_page > div.machies_list_section > table > tbody > tr');
-    const count = await allAviableMachineRowsCount.count();
-    lengthToIndexesArray(count);
+    await sleep(250);
 
-    const result = await asyncMap(lengthToIndexesArray(count), async (index) => {
-      const machineRow = new MechineListRowFragment(index);
 
-      return machineRow.getMachineData();
-    });
+    const result = await new CollectionFragment(
+      '#table_page > div.machies_list_section > table > tbody > tr',
+      MechineListRowFragment,
+    ).getData()
+
     result.forEach((machineData) => expect(machineData.manuFacturer).to.include(filterManufacturer));
-  });
-});
+  })
+})

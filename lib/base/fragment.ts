@@ -4,6 +4,7 @@ import { $ } from '../../lauch/engine';
 
 class BaseFragment {
   root: PromodElementType;
+
   constructor(root: string | PromodElementType) {
     this.root = typeof root === 'string' ? $(root) : root;
   }
@@ -21,11 +22,10 @@ class BaseFragment {
     });
   }
 
-
-/**
- * @param {string} el містить в собі умовні данні які в подальшому будуть використовуватися в методах
- * @returns {Promise} повертає Promise
- */
+  /**
+   * @param {string} el містить в собі умовні данні які в подальшому будуть використовуватися в методах
+   * @returns {Promise} повертає Promise
+   */
 
   async sendKeys(el) {
     await this.WaitFotFragmentReady();
@@ -34,8 +34,7 @@ class BaseFragment {
       const value = el[key];
       await this[key].sendKeys(value);
     }
-}
-
+  }
 }
 
 export { BaseFragment };
