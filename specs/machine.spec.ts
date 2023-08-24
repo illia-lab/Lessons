@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { provider } from '../framework';
-import { LoginFragment, MachineFiltersFragment } from '../framework/fragments';
-import {MachinesTablePage} from '../framework/pages/machine.table.page';
+import { LoginFragment } from '../framework/fragments';
+import { MachinesTablePage } from '../framework/pages/machines-table/page';
 
 const { browser } = provider;
 const { $$, $ } = provider.elementInterface;
@@ -16,13 +16,15 @@ describe('Login test suite', async () => {
   });
 
   it.only('filter machine by manufacturer', async () => {
+    const machinesPage = new MachinesTablePage();
     const filterManufacturer = 'ITALMIX DUPLEX';
+    // TODO
     await new LoginFragment().login({ username: 'admin', password: 'admin' });
-    await new MachineFiltersFragment().filter({manuFacturer: filterManufacturer});
+    await machinesPage.filters.filter({ manuFacturer: filterManufacturer });
 
-    const result = await new MachinesTablePage().MachineCollection.getData({manuFacturer: null})
+    const result = await machinesPage.machines.getData({ manuFacturer: null });
     console.log(result, '<');
 
     result.forEach((machineData) => expect(machineData.manuFacturer).to.include(filterManufacturer));
-  })
-})
+  });
+});

@@ -12,6 +12,7 @@ class CombineRowFragment extends BaseFragment {
   combineRow: PromodElementType;
 
   constructor(root) {
+    //@ts-ignore
     super(root);
     this.producerAndBrand = this.root.$('div:nth-child(1)');
     this.machineMass = this.root.$('div:nth-child(2)');

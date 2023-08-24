@@ -1,5 +1,5 @@
 import type { PromodElementType } from 'promod/built/interface';
-import { BaseFragment } from '../../lib';
+import { BaseFragment } from '../../../../lib';
 
 class MechineListRowFragment extends BaseFragment {
   root: PromodElementType;
@@ -11,8 +11,8 @@ class MechineListRowFragment extends BaseFragment {
   TractorPower: PromodElementType;
   Price: PromodElementType;
 
-  constructor(selector: string| PromodElementType) {
-    super(selector);
+  constructor(selector: string| PromodElementType,name: string) {
+    super(selector,name);
     this.manuFacturer = this.root.$('td:nth-child(1) span');
     this.workVolume = this.root.$('td:nth-child(2)');
     this.Length = this.root.$('td:nth-child(3)');

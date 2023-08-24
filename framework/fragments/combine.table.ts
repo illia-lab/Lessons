@@ -1,7 +1,7 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { BaseFragment } from '../../lib';
 import { $, $$ } from '../../lauch/engine';
-import { Collection } from './collection.frag';
+import { Collection } from '../../lib/base/collection';
 
 class CombineTableFragment extends BaseFragment {
   tableDynamicHeader: PromodElementType;
@@ -15,6 +15,7 @@ class CombineTableFragment extends BaseFragment {
   machinePrice: PromodElementType;
 
   constructor(root) {
+    //@ts-ignore
     super(root);
     this.tableDynamicHeader = this.root.$('.dynamic_table_header');
     this.tableDynamicBody = this.root.$('.dynamic_table_body');

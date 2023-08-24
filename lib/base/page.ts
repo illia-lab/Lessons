@@ -1,25 +1,32 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { waitForCondition } from 'sat-utils';
-import { $ } from '../../lauch/engine';
+import {$} from '../../lauch/engine';
+import {Collection} from './collection'
 
 class BasePage {
-	root: PromodElementType;
+  root: PromodElementType;
+  id: string;
 
-	constructor(root: string | PromodElementType) {
-		this.root = typeof root === 'string' ? $(root) : root;
-	}
+  constructor(root: string | PromodElementType, name: string) {
+    this.root = typeof root === 'string' ? $(root) : root;
+    this.id = name;
+  }
 
-	/**
-	 * метод очікує що рутове значення буде відображене
-	 * @param {void} nothing
-	 * @returns {Promise} повертає Promise
-	 */
+	protected init(selector: string | PromodElementType, childName: string, Child, CollectionChild?) {
+		let childRoot;
+		if (Child === Collection) {
+	 childRoot = typeof selector === 'string' ? this.root.$$(selector) : selector;
+		} else {
+			childRoot = typeof selector === 'string' ? this.root.$(selector) : selector;
+		}
+    return new Child(childRoot, childName, CollectionChild);
+  }
 
-	async WaitForPageReady() {
-		await waitForCondition(async () => await this.root.isDisplayed(), {
-			timeout: 7500,
-			message: () => `${this.constructor.name} is not visible`,
-		});
-	}
+  async WaitForPageReady() {
+    await waitForCondition(async () => await this.root.isDisplayed(), {
+      timeout: 7500,
+      message: () => `${this.constructor.name} ${this.id} is not visible`,
+    });
+  }
 }
-export {BasePage}
+export { BasePage };

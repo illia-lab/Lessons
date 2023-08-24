@@ -1,4 +1,5 @@
-import type { PromodElementType } from 'promod/built/interface';
+
+import type {PromodElementType} from 'promod/built/interface';
 import { BaseFragment } from '../../lib';
 import { $, $$ } from '../../lauch/engine';
 import { asyncMap, lengthToIndexesArray } from 'sat-utils';
@@ -12,6 +13,7 @@ class CombineRowsFrag extends BaseFragment {
   machinePrice: PromodElementType;
   combineRow: PromodElementType;
   constructor(root) {
+    //@ts-ignore
     super(root);
     this.producerAndBrand = this.root.$('div:nth-child(1)');
     this.machineMass = this.root.$('div:nth-child(2)');

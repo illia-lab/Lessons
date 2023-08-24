@@ -1,7 +1,7 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { asyncMap, lengthToIndexesArray } from 'sat-utils';
 import { $, $$ } from '../../lauch/engine';
-import { MechineListRowFragment } from '../fragments/machine.list.row';
+import { MechineListRowFragment } from '../pages/machines-table/fragments/machine.list.row';
 
 class CombineCollectionFragment {
   selector;

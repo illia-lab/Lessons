@@ -7,7 +7,7 @@ class LoginFragment extends BaseFragment {
   SighIn: PromodElementType;
 
   constructor() {
-    super('.login_form');
+    super('.login_form', 'Login form');
     this.username = this.root.$$('input').get(0);
     this.password = this.root.$$('input').get(1);
     this.SighIn = this.root.$('button');

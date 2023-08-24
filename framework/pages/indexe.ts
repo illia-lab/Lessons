@@ -1,1 +1,1 @@
-export * from './machine.table.page'
+export * from './machines-table/page'

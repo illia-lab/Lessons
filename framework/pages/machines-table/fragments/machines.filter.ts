@@ -1,5 +1,5 @@
 import type { PromodElementType } from 'promod/built/interface';
-import { BaseFragment } from '../../lib';
+import { BaseFragment } from '../../../../lib';
 
 class MachineFiltersFragment extends BaseFragment {
   Price: PromodElementType;
@@ -8,8 +8,8 @@ class MachineFiltersFragment extends BaseFragment {
   manuFacturer: PromodElementType;
   root: PromodElementType;
 
-  constructor() {
-    super('xpath=//*[@class="table filtering"]/parent::*');
+  constructor(selector: string | PromodElementType, name: string) {
+    super(selector, name);
     this.manuFacturer = this.root.$('.filtering input[placeholder="Виробник"]');
     this.workVolume = this.root.$(`.filtering input[placeholder="Робочий об'єм"]`);
     this.Price = this.root.$(`.filtering input[placeholder="Ціна"]`);
