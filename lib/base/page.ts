@@ -1,7 +1,7 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { waitForCondition } from 'sat-utils';
-import {$} from '../../lauch/engine';
-import {Collection} from './collection'
+import { $ } from '../../lauch/engine';
+import { Collection } from './collection';
 
 class BasePage {
   root: PromodElementType;
@@ -12,13 +12,13 @@ class BasePage {
     this.id = name;
   }
 
-	protected init(selector: string | PromodElementType, childName: string, Child, CollectionChild?) {
-		let childRoot;
-		if (Child === Collection) {
-	 childRoot = typeof selector === 'string' ? this.root.$$(selector) : selector;
-		} else {
-			childRoot = typeof selector === 'string' ? this.root.$(selector) : selector;
-		}
+  protected init(selector: string | PromodElementType, childName: string, Child, CollectionChild?) {
+    let childRoot;
+    if (Child === Collection) {
+      childRoot = typeof selector === 'string' ? this.root.$$(selector) : selector;
+    } else {
+      childRoot = typeof selector === 'string' ? this.root.$(selector) : selector;
+    }
     return new Child(childRoot, childName, CollectionChild);
   }
 
