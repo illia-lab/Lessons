@@ -22,8 +22,8 @@ class MachineFiltersFragment extends BaseFragment {
    * @returns {Promise} повертає Promise<void>
    */
 
-  async filter(filterData: { manuFacturer?: string; workVolume?: string; Price?: string }) {
-    await this.sendKeys(filterData);
+  async filter(data: { manuFacturer?: string; workVolume?: string; Price?: string }) {
+    await this.sendKeys(data);
     await this.filterButton.click();
   }
 }

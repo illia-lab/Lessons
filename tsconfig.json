@@ -9,7 +9,7 @@
 	},
 	"include": [
 		"lib"
-	],
+, "framework/pages", "framework/pages/machine.table.page.ts", "framework/pages/indexe.ts"	],
 	"exclude": [
 		"node_modules",
 "built",

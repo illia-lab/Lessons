@@ -1,8 +1,7 @@
 import { expect } from 'chai';
-import { sleep, lengthToIndexesArray, asyncMap } from 'sat-utils';
 import { provider } from '../framework';
-import { LoginFragment, MechineListRowFragment, MachineFiltersFragment } from '../framework/fragments';
-import { CollectionFragment } from '../framework/fragments/collection.frag';
+import { LoginFragment, MachineFiltersFragment } from '../framework/fragments';
+import {MachinesTablePage} from '../framework/pages/machine.table.page';
 
 const { browser } = provider;
 const { $$, $ } = provider.elementInterface;
@@ -19,15 +18,10 @@ describe('Login test suite', async () => {
   it.only('filter machine by manufacturer', async () => {
     const filterManufacturer = 'ITALMIX DUPLEX';
     await new LoginFragment().login({ username: 'admin', password: 'admin' });
-    await waitForCondition(async () => await $('#table_page').isDisplayed());
-    await new MachineFiltersFragment().filter({ manuFacturer: filterManufacturer });
-    await sleep(250);
+    await new MachineFiltersFragment().filter({manuFacturer: filterManufacturer});
 
-
-    const result = await new CollectionFragment(
-      '#table_page > div.machies_list_section > table > tbody > tr',
-      MechineListRowFragment,
-    ).getData()
+    const result = await new MachinesTablePage().MachineCollection.getData({manuFacturer: null})
+    console.log(result, '<');
 
     result.forEach((machineData) => expect(machineData.manuFacturer).to.include(filterManufacturer));
   })

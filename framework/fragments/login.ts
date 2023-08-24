@@ -19,8 +19,8 @@ class LoginFragment extends BaseFragment {
    * @returns {Promise} повертає Promise<void>
    */
 
-  async login(loginData: { username?: string; password?: string }) {
-    await this.sendKeys(loginData)
+  async login(data: { username?: string; password?: string }) {
+    await this.sendKeys(data)
     await this.SighIn.click();
   }
 }

@@ -2,27 +2,26 @@ import type { PromodElementType } from 'promod/built/interface';
 import { asyncMap, lengthToIndexesArray } from 'sat-utils';
 import { $, $$ } from '../../lauch/engine';
 import { MechineListRowFragment } from '../fragments/machine.list.row';
+import { BaseFragment } from '../../lib';
 
-class CollectionFragment {
-  selector;
+class Collection {
+  selector: string;
   fragment;
 
-  constructor(selector, fragment) {
-    this.selector = $$(selector);
+  constructor(selector: string, fragment) {
+    this.selector = selector;
     this.fragment = fragment;
   }
 
-  async getData() {
-		const count = await this.selector.count();
-		console.log(count)
-
-    const result = await asyncMap(lengthToIndexesArray(count), async (index) => {
-      const machineRow = new this.fragment(this.selector.get(index));
-
-      return machineRow.getData();
+  async getData(data: { [k: string]: null } = {}) {
+    const FragmentClass = this.fragment;
+    const FragmentRootElements = $$(this.selector);
+    const result = await FragmentRootElements.map(async (el) => {
+      const CollectionFragmentInstance = new FragmentClass(el);
+      const CollectionFragmentData = await CollectionFragmentInstance.getData(data);
+      return CollectionFragmentData;
     });
-
     return result;
   }
 }
-export { CollectionFragment };
+export { Collection };
