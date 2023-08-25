@@ -11,8 +11,9 @@ class MechineListRowFragment extends BaseFragment {
   TractorPower: PromodElementType;
   Price: PromodElementType;
 
-  constructor(selector: string| PromodElementType,name: string) {
-    super(selector,name);
+  constructor(selector: string | PromodElementType, name: string) {
+    super(selector, name);
+
     this.manuFacturer = this.root.$('td:nth-child(1) span');
     this.workVolume = this.root.$('td:nth-child(2)');
     this.Length = this.root.$('td:nth-child(3)');

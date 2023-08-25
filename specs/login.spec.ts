@@ -1,5 +1,6 @@
 import { provider } from '../framework';
-import { LoginFragment } from '../framework/fragments';
+import {LoginFragment} from '../framework/fragments';
+import {MainPage} from '../framework/pages/main/main'
 
 const { browser } = provider;
 const { $ } = provider.elementInterface;
@@ -18,6 +19,7 @@ describe('Login test suite', async () => {
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed());
   });
+
   it('User Success test', async () => {
     await new LoginFragment().login({ username: 'Test', password: 'Test' });
     await waitForCondition(async () => await $('#table_page').isDisplayed());

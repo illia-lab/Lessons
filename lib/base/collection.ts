@@ -1,5 +1,4 @@
 import { PromodElementsType } from 'promod/built/interface';
-
 import { $$ } from '../../lauch/engine';
 
 class Collection {
@@ -12,7 +11,11 @@ class Collection {
     this.id = name
     this.fragment = fragment;
   }
-
+/**
+ * @param {object} data
+ * @returns {}
+ */
+   //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
   async getData(data: { [k: string]: null } = {}) {
     const FragmentClass = this.fragment;
     const result = await this.roots.map(async (el, index) => {

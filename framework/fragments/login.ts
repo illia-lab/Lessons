@@ -4,13 +4,13 @@ import { BaseFragment } from '../../lib';
 class LoginFragment extends BaseFragment {
   username: PromodElementType;
   password: PromodElementType;
-  SighIn: PromodElementType;
+  sighIn: PromodElementType;
 
   constructor() {
     super('.login_form', 'Login form');
     this.username = this.root.$$('input').get(0);
     this.password = this.root.$$('input').get(1);
-    this.SighIn = this.root.$('button');
+    this.sighIn = this.root.$('button');
   }
 
   /**
@@ -20,8 +20,8 @@ class LoginFragment extends BaseFragment {
    */
 
   async login(data: { username?: string; password?: string }) {
-    await this.sendKeys(data)
-    await this.SighIn.click();
+    await this.sendKeys(data);
+    await this.sighIn.click();
   }
 }
 export { LoginFragment };
