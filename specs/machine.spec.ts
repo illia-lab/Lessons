@@ -17,6 +17,7 @@ describe('Login test suite', async () => {
 
   it.only('filter machine by manufacturer', async () => {
     const machinesPage = new MachinesTablePage();
+    await browser.sleep(250_000);
     const filterManufacturer = 'ITALMIX DUPLEX';
     // TODO
     await new LoginFragment().login({ username: 'admin', password: 'admin' });

@@ -12,21 +12,22 @@ class BaseFragment {
     this.id = name;
   }
 
-/**
- *
- * @example this.machines = this.init(
-      'div.machies_list_section > table > tbody > tr',
-      'Machines row item',
-      Collection,
-      MechineListRowFragment,
-    );
- * @param {string} selector root selector
- * @param {string}childName name of some fragment
- * @param {any} Child some Fragmnet
- * @param {any} CollectionChild CollectionFragment
- * @returns {any} return new Child(childRoot, childName, CollectionChild);
- */
-   //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
+  /**
+   *that function initializated selector,childName,child and CollectionChild
+   * @example this.machines = this.init(
+   *   'div.machies_list_section > table > tbody > tr',
+   *   'Machines row item',
+   *   Collection,
+   *   MechineListRowFragment,
+   * );
+   * @param {string} selector root selector
+   * @param {string}childName name of some fragment
+   * @param {any} Child some Fragmnet
+   * @param {any} CollectionChild CollectionFragment
+   * @returns {any} return new Child(childRoot, childName, CollectionChild);
+   */
+
+  //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
   protected init(selector: string | PromodElementType, childName: string, Child, CollectionChild?) {
     let childRoot;
     if (Child === Collection) {
@@ -55,9 +56,10 @@ class BaseFragment {
    * @example const result = await machinesPage.machines.getData({ manuFacturer: null }); get values from MachineRowFragment
    * @returns {string} it mathod returns values of our conditional datas
    */
-   //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
+  //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
   async getData(data: { [k: string]: null } = {}) {
     await this.WaitForFragmentReady();
+
     const dataKeys = Object.keys(data);
     const result = {};
     for (const key of dataKeys) {
@@ -74,7 +76,7 @@ class BaseFragment {
    * @example async login(data: { username?: string; password?: string }) {
     await this.sendKeys(data);
    */
- //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
+  //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
   async sendKeys(data: { [k: string]: any }) {
     await this.WaitForFragmentReady();
     const loginDataKeys = Object.keys(data);
