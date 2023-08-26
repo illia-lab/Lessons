@@ -22,7 +22,6 @@ class Collection {
     const FragmentClass = this.fragment;
     const result = await this.roots.map(async (el, index) => {
       const CollectionFragmentInstance = new FragmentClass(el, `${this.id} ${index}`);
-      console.log(FragmentClass, data)
       const CollectionFragmentData = await CollectionFragmentInstance.getData(data);
       return CollectionFragmentData;
     });

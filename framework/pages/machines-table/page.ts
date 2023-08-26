@@ -4,8 +4,8 @@ import { MechineListRowFragment } from './fragments/machine.list.row';
 import { MachineFiltersFragment } from './fragments/machines.filter';
 
 class MachinesTablePage extends BasePage {
-  machines;
-  filters: MachineFiltersFragment;
+ private machines;
+  private filters: MachineFiltersFragment;
 
   constructor() {
     super('#table_page', 'Machine table page');

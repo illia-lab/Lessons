@@ -1,6 +1,6 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { BaseFragment } from '../../../../lib';
-import { $, $$ } from '../../../../lauch/engine';
+import { $$ } from '../../../../lauch/engine';
 
 class RegistationModalFragment extends BaseFragment {
   username: PromodElementType;

@@ -14,16 +14,16 @@ class LoginModalFragment extends BaseFragment {
     this.sighIn = this.root.$$(':nth-child(4)').get(0);
   }
 
-/**
-   * Метод який відсилає певні значення в логін поля
-   * @param {loginData} loginData містить в собі умовні дані username та password
-   * @returns {Promise} повертає Promise<void>
+  /**
+   * Method what sends conditional login data to login forms
+   * @param {object} data conditional login data
+   * @returns {string|number} retunrs conditional data to login forms
    */
 
-async login(data: { username?: string; password?: string }) {
-  await this.sendKeys(data);
-  await this.sighIn.click();
-}
+  async login(data: { username?: string; password?: string }) {
+    await this.sendKeys(data);
+    await this.sighIn.click();
+  }
 }
 
 export { LoginModalFragment };

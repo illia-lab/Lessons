@@ -1,5 +1,4 @@
 import { provider } from '../framework';
-import {LoginFragment} from '../framework/fragments';
 import {MainPage} from '../framework/pages/main/main'
 
 const { browser } = provider;
@@ -15,13 +14,15 @@ describe('Login test suite', async () => {
   });
 
   it('Admin Success test', async () => {
-    await new LoginFragment().login({ username: 'admin', password: 'admin' });
+    const mainPage = new MainPage()
+    await mainPage.loginFrag.login({ username: 'admin', password: 'admin' });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed());
   });
 
   it('User Success test', async () => {
-    await new LoginFragment().login({ username: 'Test', password: 'Test' });
+    const mainPage = new MainPage()
+    await mainPage.loginFrag.login({ username: 'Test', password: 'Test' });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
   });
