@@ -1,7 +1,7 @@
 import type { PromodElementType } from 'promod/built/interface';
-import { BaseFragment } from '../../lib';
-import { $, $$ } from '../../lauch/engine';
-import { Collection } from '../../lib/base/collection';
+import { BaseFragment } from '../../../../lib';
+import { $, $$ } from '../../../../lauch/engine';
+import { Collection } from '../../../../lib/base/collection';
 
 class CombineTableFragment extends BaseFragment {
   tableDynamicHeader: PromodElementType;
@@ -14,9 +14,8 @@ class CombineTableFragment extends BaseFragment {
   machineClass: PromodElementType;
   machinePrice: PromodElementType;
 
-  constructor(root) {
-    //@ts-ignore
-    super(root);
+  constructor(selector: string | PromodElementType, name: string) {
+    super(selector,name);
     this.tableDynamicHeader = this.root.$('.dynamic_table_header');
     this.tableDynamicBody = this.root.$('.dynamic_table_body');
     this.combainTableRow = $$('.dynamic_table_row').get(0);

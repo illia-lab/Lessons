@@ -18,7 +18,7 @@ class Collection {
  * @returns {any}  return CollectionFragmentData
  */
    //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
-  async getData(data: { [k: string]: null } = {}) {
+  async getData(data: {[k: string]: null} = {}) {
     const FragmentClass = this.fragment;
     const result = await this.roots.map(async (el, index) => {
       const CollectionFragmentInstance = new FragmentClass(el, `${this.id} ${index}`);

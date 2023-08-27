@@ -8,13 +8,16 @@
 		"experimentalDecorators": true
 	},
 	"include": [
-		"lib"
-, "framework/pages", "framework/pages/machines-table/page.ts", "framework/pages/indexe.ts"	],
+		"lib",
+		"framework/pages",
+		"framework/pages/machines-table/page.ts",
+		"framework/pages/indexe.ts"
+	],
 	"exclude": [
 		"node_modules",
-"built",
-"specs",
-"example",
-"playground.*"
+		"built",
+		"specs",
+		"example",
+		"playground.*"
 	]
 }

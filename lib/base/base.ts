@@ -44,8 +44,7 @@ class Base {
    * this.WaitFotFragmentReady()
    * @param {} nothing
    */
-  async WaitForRootReady() {
-    console.log(this.root.selector);
+  async waitForRootReady() {
     await waitForCondition(async () => await this.root.isPresent(), {
       timeout: 7500,
       message: (time, err = 'no errors') =>
@@ -61,11 +60,10 @@ class Base {
    */
   //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
   async sendKeys(data: { [k: string]: any }) {
-    await this.WaitForRootReady();
+    await this.waitForRootReady();
     const loginDataKeys = Object.keys(data);
     for (const key of loginDataKeys) {
       const value = data[key];
-      console.log(key)
       await this[key].sendKeys(value);
     }
   }

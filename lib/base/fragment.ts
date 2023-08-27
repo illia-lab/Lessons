@@ -9,7 +9,7 @@ class BaseFragment extends Base {
     super(root, name)
   }
   async click(data: { [k: string]: any }) {
-    await this.WaitForRootReady();
+    await this.waitForRootReady();
     const loginDataKeys = Object.keys(data);
     for (const key of loginDataKeys) {
        /**
@@ -20,7 +20,7 @@ class BaseFragment extends Base {
   }
 
   async getData(data: { [k: string]: any } = {}): Promise<{ [k: string]: any }> {
-    await this.WaitForRootReady();
+    await this.waitForRootReady();
 		const loginDataKeys = Object.keys(data);
 		const result = {}
     for (const key of loginDataKeys) {

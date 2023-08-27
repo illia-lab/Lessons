@@ -1,9 +1,7 @@
 import { expect } from 'chai';
 import { provider } from '../framework';
-import { LoginFragment } from '../framework/fragments';
 import { MachinesTablePage } from '../framework/pages/machines-table/page';
 import { MainPage } from '../framework/pages/main/main';
-import { Base } from '../lib/base/base';
 
 const { browser } = provider;
 const { $$, $ } = provider.elementInterface;
@@ -22,7 +20,6 @@ describe('Login test suite', async () => {
     const machinesPage = new MachinesTablePage();
     const logins = { username: 'admin', password: 'admin' };
     const filterManufacturer = 'ITALMIX DUPLEX';
-    // TODO
 
     await mainPage.sendKeys({ logins });
     await mainPage.click({ logins: { login: null } });
