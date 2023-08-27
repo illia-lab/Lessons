@@ -6,7 +6,7 @@ import { LoginModalFragment } from './fragments/login.modal.form';
 class MainPage extends BasePage {
   headerBtns: HeaderFragment;
   registatiomnFrag: RegistationModalFragment;
-  loginFrag: LoginModalFragment;
+  private logins: LoginModalFragment;
 
   constructor() {
     super('#main_page', 'Main page');
@@ -16,7 +16,7 @@ class MainPage extends BasePage {
       'Registration Form',
       RegistationModalFragment,
     );
-    this.loginFrag = this.init('.login_form', 'Login Form', LoginModalFragment);
+    this.logins = this.init('.login_form', 'Login Form', LoginModalFragment);
   }
 }
 

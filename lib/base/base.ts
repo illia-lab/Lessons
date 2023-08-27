@@ -45,9 +45,11 @@ class Base {
    * @param {} nothing
    */
   async WaitForRootReady() {
-    await waitForCondition(async () => await this.root.isDisplayed(), {
+    console.log(this.root.selector);
+    await waitForCondition(async () => await this.root.isPresent(), {
       timeout: 7500,
-      message: () => `${this.constructor.name} ${this.id} is not visible`,
+      message: (time, err = 'no errors') =>
+        `${this.constructor.name} ${this.id} is not visible, waiting time ${time}, error: ${err}`,
     });
   }
   /**
@@ -63,6 +65,7 @@ class Base {
     const loginDataKeys = Object.keys(data);
     for (const key of loginDataKeys) {
       const value = data[key];
+      console.log(key)
       await this[key].sendKeys(value);
     }
   }

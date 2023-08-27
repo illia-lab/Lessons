@@ -15,14 +15,18 @@ describe('Login test suite', async () => {
 
   it('Admin Success test', async () => {
     const mainPage = new MainPage()
-    await mainPage.loginFrag.login({ username: 'admin', password: 'admin' });
+    const loginData = { username: 'admin', password: 'admin' }
+    await mainPage.sendKeys({logins: {loginData}});
+    await mainPage.click({logins: {login: null}});
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed());
   });
 
   it('User Success test', async () => {
     const mainPage = new MainPage()
-    await mainPage.loginFrag.login({ username: 'Test', password: 'Test' });
+    const loginData = { username: 'admin', password: 'admin' }
+    await mainPage.sendKeys({logins: {loginData}});
+    await mainPage.click({logins: {login: null}});
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
   });

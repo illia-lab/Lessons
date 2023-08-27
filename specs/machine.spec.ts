@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import { provider } from '../framework';
 import { LoginFragment } from '../framework/fragments';
-import {MachinesTablePage} from '../framework/pages/machines-table/page';
+import { MachinesTablePage } from '../framework/pages/machines-table/page';
 import { MainPage } from '../framework/pages/main/main';
+import { Base } from '../lib/base/base';
 
 const { browser } = provider;
 const { $$, $ } = provider.elementInterface;
@@ -16,16 +17,19 @@ describe('Login test suite', async () => {
     await browser.get('http://localhost:4000/');
   });
 
-  it.only('filter machine by manufacturer', async () => {
-    const mainPage = new MainPage()
+  it('filter machine by manufacturer', async () => {
+    const mainPage = new MainPage();
     const machinesPage = new MachinesTablePage();
+    const logins = { username: 'admin', password: 'admin' };
     const filterManufacturer = 'ITALMIX DUPLEX';
     // TODO
-    await mainPage.loginFrag.login({ username: 'admin', password: 'admin' });
-    await machinesPage.sendKeys({filters: {manuFacturer: filterManufacturer}});
-    await machinesPage.click({filters: {filter: null}});
 
-    const result = await machinesPage.getData({machines: {manuFacturer: null}});
+    await mainPage.sendKeys({ logins });
+    await mainPage.click({ logins: { login: null } });
+    await machinesPage.sendKeys({ filters: { manuFacturer: filterManufacturer } });
+    await machinesPage.click({ filters: { filter: null } });
+
+    const result = await machinesPage.getData({ machines: { manuFacturer: null } });
     console.log(result, '<');
 
     result.machines.forEach((machineData) => expect(machineData.manuFacturer).to.include(filterManufacturer));
