@@ -1,15 +1,14 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { waitForCondition } from 'sat-utils';
-import { $ } from '../../lauch/engine';
 import { Collection } from '../base/collection';
+import { LayerBase } from './layer.base';
 
-class Base {
+class Base extends LayerBase {
   root: PromodElementType;
   id: string;
 
   constructor(root: string | PromodElementType, name: string) {
-    this.root = typeof root === 'string' ? $(root) : root;
-    this.id = name;
+    super(root, name);
   }
 
   /**
@@ -27,7 +26,6 @@ class Base {
    * @returns {any} return new Child(childRoot, childName, CollectionChild);
    */
 
-  //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
   protected init(selector: string | PromodElementType, childName: string, Child, CollectionChild?) {
     let childRoot;
     if (Child === Collection) {
@@ -44,6 +42,7 @@ class Base {
    * this.WaitFotFragmentReady()
    * @param {} nothing
    */
+
   async waitForRootReady() {
     await waitForCondition(async () => await this.root.isPresent(), {
       timeout: 7500,
@@ -51,6 +50,31 @@ class Base {
         `${this.constructor.name} ${this.id} is not visible, waiting time ${time}, error: ${err}`,
     });
   }
+
+  async click(data: { [k: string]: any }): Promise<void> {
+    await this.waitForRootReady();
+    const loginDataKeys = Object.keys(data);
+    for (const key of loginDataKeys) {
+      /**
+       * !@info page properties should be base library elements,not fragments!
+       */
+      await this[key].click(data[key]);
+    }
+  }
+
+  async getData(data: { [k: string]: any } = {}): Promise<{ [k: string]: any }> {
+    await this.waitForRootReady();
+    const DataKeys = Object.keys(data);
+    const result = {};
+    for (const key of DataKeys) {
+      /**
+       * !@info page properties should be base library elements,not fragments!
+       */
+      result[key] = await this[key].getData(data[key]);
+    }
+    return result;
+  }
+
   /**
    * That method sends conditional data to login froms
    * @param {object} data it conditional data
@@ -58,8 +82,8 @@ class Base {
    * @example async login(data: { username?: string; password?: string }) {
     await this.sendKeys(data);
    */
-  //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
-  async sendKeys(data: { [k: string]: any }) {
+
+  async sendKeys(data: { [k: string]: any }): Promise<void> {
     await this.waitForRootReady();
     const loginDataKeys = Object.keys(data);
     for (const key of loginDataKeys) {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { provider } from '../framework';
 import { MachinesTablePage } from '../framework/pages/machines-table/page';
-import { MainPage } from '../framework/pages/main/main';
+import { MainPage } from '../framework/pages/main/page';
 
 const { browser } = provider;
 const { $$, $ } = provider.elementInterface;

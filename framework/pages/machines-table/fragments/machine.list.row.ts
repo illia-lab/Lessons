@@ -1,26 +1,25 @@
-import type { PromodElementType } from 'promod/built/interface';
 import { BaseFragment } from '../../../../lib';
+import { Text } from '../../../../lib/elements/text';
 
 class MechineListRowFragment extends BaseFragment {
-  root: PromodElementType;
-  manuFacturer: PromodElementType;
-  workVolume: PromodElementType;
-  length: PromodElementType;
-  width: PromodElementType;
-  mass: PromodElementType;
-  tractorPower: PromodElementType;
-  price: PromodElementType;
+  manuFacturer: Text;
+  workVolume: Text;
+  length: Text;
+  width: Text;
+  mass: Text;
+  tractorPower: Text;
+  price: Text;
 
-  constructor(selector: string | PromodElementType, name: string) {
+  constructor(selector, name) {
     super(selector, name);
 
-    this.manuFacturer = this.root.$('td:nth-child(1) span');
-    this.workVolume = this.root.$('td:nth-child(2)');
-    this.length = this.root.$('td:nth-child(3)');
-    this.width = this.root.$('td:nth-child(4)');
-    this.mass = this.root.$('td:nth-child(5)');
-    this.tractorPower = this.root.$('td:nth-child(6)');
-    this.price = this.root.$('td:nth-child(7)');
+    this.manuFacturer = this.init(this.root.$('td:nth-child(1) span'), 'manufacturer', Text);
+    this.workVolume = this.init(this.root.$('td:nth-child(2)'), 'workVolume', Text);
+    this.length = this.init(this.root.$('td:nth-child(3)'), 'lenght', Text);
+    this.width = this.init(this.root.$('td:nth-child(4)'), 'width', Text);
+    this.mass = this.init(this.root.$('td:nth-child(5)'), 'mass', Text);
+    this.tractorPower = this.init(this.root.$('td:nth-child(6)'), 'tractorPower', Text);
+    this.price = this.init(this.root.$('td:nth-child(7)'), 'Price', Text);
   }
 }
 

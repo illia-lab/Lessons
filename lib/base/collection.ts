@@ -2,23 +2,23 @@ import { PromodElementsType } from 'promod/built/interface';
 import { $$ } from '../../lauch/engine';
 
 class Collection {
-  roots: PromodElementsType
+  roots: PromodElementsType;
   fragment;
-  id:string
+  id: string;
 
-  constructor(selector: string | PromodElementsType,name:string ,fragment) {
+  constructor(selector: string | PromodElementsType, name: string, fragment) {
     this.roots = typeof selector === 'string' ? $$(selector) : selector;
-    this.id = name
+    this.id = name;
     this.fragment = fragment;
   }
-/**
- * that method get name and selector data
- * @example const result = await machinesPage.machines.getData({ manuFacturer: null });
- * @param {object} data
- * @returns {any}  return CollectionFragmentData
- */
-   //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
-  async getData(data: {[k: string]: null} = {}) {
+  /**
+   * that method get name and selector data
+   * @example const result = await machinesPage.machines.getData({ manuFacturer: null });
+   * @param {object} data
+   * @returns {any}  return CollectionFragmentData
+   */
+  //TODO зрозуміти що робить ця функція і що собою являють параметри цієї функції
+  async getData(data: { [k: string]: null } = {}) {
     const FragmentClass = this.fragment;
     const result = await this.roots.map(async (el, index) => {
       const CollectionFragmentInstance = new FragmentClass(el, `${this.id} ${index}`);

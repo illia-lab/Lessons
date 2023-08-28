@@ -1,5 +1,5 @@
 import { provider } from '../framework';
-import {MainPage} from '../framework/pages/main/main'
+import {MainPage} from '../framework/pages/main/page'
 
 const { browser } = provider;
 const { $ } = provider.elementInterface;

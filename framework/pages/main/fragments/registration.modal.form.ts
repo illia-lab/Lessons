@@ -1,6 +1,6 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { BaseFragment } from '../../../../lib';
-import { $,$$ } from '../../../../lauch/engine';
+import { $, $$ } from '../../../../lauch/engine';
 
 class RegistationModalFragment extends BaseFragment {
   username: PromodElementType;
@@ -15,7 +15,7 @@ class RegistationModalFragment extends BaseFragment {
     this.name = this.root.$$('.form-control').get(1);
     this.email = this.root.$$('.form-control').get(2);
     this.password = this.root.$$('.form-control').get(3);
-    this.sighUPBtn = this.root.$('button')
+    this.sighUPBtn = this.root.$('button');
   }
 }
 
