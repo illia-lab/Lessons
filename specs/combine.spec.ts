@@ -399,8 +399,8 @@ describe('Combine Table Test Suite', () => {
     const findResult = result.combinesRow.find((combineData) => +combineData.combineMass === 3834);
 
     expect(findResult).not.equal(undefined);
-
   });
+
   it('Combine test case "check that one of the Mass fit"(Negative)', async () => {
     const navigationPage = new NavigationPage();
     const mainPage = new MainPage();
@@ -418,7 +418,5 @@ describe('Combine Table Test Suite', () => {
     const findResult = result.combinesRow.find((combineData) => +combineData.combineMass === 4000);
 
     expect(findResult).not.equal(undefined);
-
   });
-  });
-
+});
