@@ -4,7 +4,7 @@ import { MachinesTablePage } from '../framework/pages/machines-table/page';
 import { MainPage } from '../framework/pages/main/page';
 
 const { browser } = provider;
-const { $$, $ } = provider.elementInterface;
+const { $ } = provider.elementInterface;
 const { waitForCondition } = provider.waiters;
 
 describe('Login test suite', async () => {

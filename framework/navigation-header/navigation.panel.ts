@@ -9,7 +9,7 @@ class NavigationPanelFragment extends BaseFragment {
   leaveBtn: Button;
 
   constructor(root, name) {
-    super(root, name);
+    super(root, name,);
     this.toAnalyticsBtn = this.init(this.root.$$('button:nth-child(1)').get(0),'to analytics button',Button)
     this.toCombine = this.init(this.root.$$('button:nth-child(1)').get(1),'to combines button',Button)
     this.toAdminOffice = this.init(this.root.$$('button:nth-child(1)').get(2),'to admin office button',Button)

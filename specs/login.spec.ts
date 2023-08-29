@@ -1,5 +1,5 @@
 import { provider } from '../framework';
-import {MainPage} from '../framework/pages/main/page'
+import { MainPage } from '../framework/pages/main/page';
 
 const { browser } = provider;
 const { $ } = provider.elementInterface;
@@ -14,19 +14,19 @@ describe('Login test suite', async () => {
   });
 
   it('Admin Success test', async () => {
-    const mainPage = new MainPage()
-    const loginData = { username: 'admin', password: 'admin' }
-    await mainPage.sendKeys({logins: {loginData}});
-    await mainPage.click({logins: {login: null}});
+    const mainPage = new MainPage();
+    const logins = { username: 'admin', password: 'admin' };
+    await mainPage.sendKeys({logins});
+    await mainPage.click({ logins: { login: null } });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed());
   });
 
   it('User Success test', async () => {
-    const mainPage = new MainPage()
-    const loginData = { username: 'admin', password: 'admin' }
-    await mainPage.sendKeys({logins: {loginData}});
-    await mainPage.click({logins: {login: null}});
+    const mainPage = new MainPage();
+    const logins = { username: 'admin', password: 'admin' };
+    await mainPage.sendKeys({logins});
+    await mainPage.click({ logins: { login: null } });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
   });

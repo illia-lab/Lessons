@@ -60,6 +60,7 @@ class Base extends LayerBase {
        */
       await this[key].click(data[key]);
     }
+    return;
   }
 
   async getData(data: { [k: string]: any } = {}): Promise<{ [k: string]: any }> {
