@@ -3,6 +3,10 @@ import { provider } from '../framework';
 import { expect } from 'chai';
 import { NavigationPage } from '../framework/navigation-header/navigation.page';
 import { CombinesPage } from '../framework/pages/combines/page';
+import express from 'express-pino-logger';
+import logger from '../framework/logger';
+const PORT = 3000;
+const app = express();
 
 const { browser } = provider;
 const { $ } = provider.elementInterface;
@@ -15,8 +19,7 @@ describe('Combine Table Test Suite', () => {
     await browser.executeScript(() => localStorage.clear());
     await browser.get('http://localhost:4000/');
   });
-
-  it('Combine test case "check that producerAndBrand info is correct"', async () => {
+  it.only('Combine test case "check that producerAndBrand info is correct"', async () => {
     const navigationPage = new NavigationPage();
     const mainPage = new MainPage();
     const combinesPage = new CombinesPage();
@@ -29,9 +32,14 @@ describe('Combine Table Test Suite', () => {
 
     const result = await combinesPage.getData({ combinesRow: { producerAndBrand: null } });
 
-    console.log(result, '<');
-
     result.combinesRow.forEach((combineData) => expect(combineData.producerAndBrand).to.not.include(producerAndBrand));
+
+    logger.info('this test check that producer and brand is correct');
+    logger.warn('when error check class page');
+    logger.warn('not correct test data can leads to error');
+    logger.warn(
+      'not correct params in getData or in other functions in test can leads us to TypeError: Cannot read properties of undefined (reading "getData")',
+    );
   });
 
   it('Combine test case "check that producerAndBrand info is correct(Negative)"', async () => {

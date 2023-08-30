@@ -57,15 +57,23 @@ describe('Login test suite', async () => {
 
   it('User login test(Negative)', async () => {
     const mainPage = new MainPage();
-    const logins = { username: 'test', password: 'test' };
+    const logins = { username: '', password: 'test' };
     await mainPage.sendKeys({logins});
     await mainPage.click({ logins: { login: null } });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
     await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
   });
-  it('User login test', async () => {
+  it('User login test(Negative)', async () => {
     const mainPage = new MainPage();
-    const logins = { username: 'test', password: 'test' };
+    const logins = { username: 'test', password: '' };
+    await mainPage.sendKeys({logins});
+    await mainPage.click({ logins: { login: null } });
+    await waitForCondition(async () => await $('#table_page').isDisplayed());
+    await waitForCondition(async () => !(await $('xpath=//button[text()="До адмін кабінету"]').isDisplayed()));
+  });
+  it('User login test(Negative)', async () => {
+    const mainPage = new MainPage();
+    const logins = { username: '', password: '' };
     await mainPage.sendKeys({logins});
     await mainPage.click({ logins: { login: null } });
     await waitForCondition(async () => await $('#table_page').isDisplayed());
