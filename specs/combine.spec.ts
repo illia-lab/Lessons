@@ -3,10 +3,7 @@ import { provider } from '../framework';
 import { expect } from 'chai';
 import { NavigationPage } from '../framework/navigation-header/navigation.page';
 import { CombinesPage } from '../framework/pages/combines/page';
-import express from 'express-pino-logger';
 import logger from '../framework/logger';
-const PORT = 3000;
-const app = express();
 
 const { browser } = provider;
 const { $ } = provider.elementInterface;
@@ -19,13 +16,13 @@ describe('Combine Table Test Suite', () => {
     await browser.executeScript(() => localStorage.clear());
     await browser.get('http://localhost:4000/');
   });
-  it.only('Combine test case "check that producerAndBrand info is correct"', async () => {
-    const navigationPage = new NavigationPage();
-    const mainPage = new MainPage();
-    const combinesPage = new CombinesPage();
-    const logins = { username: 'admin', password: 'admin' };
-    const producerAndBrand = {};
 
+   it.only('Combine test case "check that producerAndBrand info is correct"', async () => {
+    const navigationPage = new NavigationPage();
+     const mainPage = new MainPage();
+     const combinesPage = new CombinesPage();
+     const logins = {username: 'admin', password: 'admin'};
+    const producerAndBrand = {};
     await mainPage.sendKeys({ logins });
     await mainPage.click({ logins: { login: null } });
     await navigationPage.click({ combineClick: { toCombine: null } });
@@ -34,15 +31,15 @@ describe('Combine Table Test Suite', () => {
 
     result.combinesRow.forEach((combineData) => expect(combineData.producerAndBrand).to.not.include(producerAndBrand));
 
-    logger.info('this test check that producer and brand is correct');
-    logger.warn('when error check class page');
-    logger.warn('not correct test data can leads to error');
-    logger.warn(
-      'not correct params in getData or in other functions in test can leads us to TypeError: Cannot read properties of undefined (reading "getData")',
-    );
   });
 
-  it('Combine test case "check that producerAndBrand info is correct(Negative)"', async () => {
+  logger.info('Combine test case "check that producerAndBrand info is correct"');
+  logger.info('this test check that producer and brand is correct');
+  logger.warn('when error,check class page');
+  logger.warn(`not correct test data  can leads to Error: NavigationPage Navigation Page is not visible, waiting time 7500, error: no errors`);
+  logger.warn('not correct params in getData or in other functions in test can leads us to TypeError: Cannot read properties of undefined (reading "getData")');
+
+ it('Combine test case "check that producerAndBrand info is correct(Negative)"', async () => {
     const navigationPage = new NavigationPage();
     const mainPage = new MainPage();
     const combinesPage = new CombinesPage();
@@ -55,7 +52,6 @@ describe('Combine Table Test Suite', () => {
 
     const result = await combinesPage.getData({ combinesRow: { producerAndBrand: null } });
 
-    console.log(result, '<');
 
     result.combinesRow.forEach((combineData) => expect(combineData.producerAndBrand).to.include(producerAndBrand));
   });
@@ -108,7 +104,7 @@ describe('Combine Table Test Suite', () => {
     console.log(result);
     result.combinesRow.forEach((combineData) => expect(+combineData.combinePrice).greaterThan(30000));
   });
-  it('Combine test case "check that combine prices above than 30000"(Negative)', async () => {
+  it.only('Combine test case "check that combine prices above than 30000"(Negative)', async () => {
     const navigationPage = new NavigationPage();
     const mainPage = new MainPage();
     const combinesPage = new CombinesPage();

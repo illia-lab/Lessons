@@ -7,7 +7,7 @@ class Input extends BaseElement {
   }
 
   async sendKeys(value: string | number) {
-    await this.waitForElementReady();
+    await this.waitForRootReady();
     await this.root.sendKeys(value);
   }
 }

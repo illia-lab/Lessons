@@ -1,6 +1,8 @@
 import type { PromodElementType } from 'promod/built/interface';
 import { waitForCondition } from 'sat-utils';
-import { $ } from '../../lauch/engine';
+import {$} from '../../lauch/engine';
+import express from 'express-pino-logger';
+import logger from '../../framework/logger';
 
 class LayerBase {
   root: PromodElementType;
@@ -18,6 +20,7 @@ class LayerBase {
    * @param {} nothing
    */
   async waitForRootReady() {
+    logger.info('waitForRootReady function wait until root selector be present,it userd in sendKeys,getData and in click methods')
     await waitForCondition(async () => await this.root.isPresent(), {
       timeout: 7500,
       message: (time, err = 'no errors') =>

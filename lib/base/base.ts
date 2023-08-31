@@ -2,6 +2,9 @@ import type { PromodElementType } from 'promod/built/interface';
 import { waitForCondition } from 'sat-utils';
 import { Collection } from '../base/collection';
 import { LayerBase } from './layer.base';
+import logger from '../../framework/logger';
+
+
 
 class Base extends LayerBase {
   root: PromodElementType;
@@ -27,6 +30,9 @@ class Base extends LayerBase {
    */
 
   protected init(selector: string | PromodElementType, childName: string, Child, CollectionChild?) {
+    logger.info(
+      `1:${this.constructor.name} ${this.id} 2: params: 1:selector 2:childName 3:Child 4:CollectionChild`,
+    );
     let childRoot;
     if (Child === Collection) {
       childRoot = typeof selector === 'string' ? this.root.$$(selector) : selector;
@@ -40,10 +46,12 @@ class Base extends LayerBase {
    * that function waits until fragment root will be visible, if condition is false throws error
    * @example
    * this.WaitFotFragmentReady()
-   * @param {} nothing
    */
 
   async waitForRootReady() {
+    logger.info(
+      `${this.constructor.name} ${this.id} waitForRootReady`,
+    );
     await waitForCondition(async () => await this.root.isPresent(), {
       timeout: 7500,
       message: (time, err = 'no errors') =>
@@ -51,10 +59,19 @@ class Base extends LayerBase {
     });
   }
 
+
+  /**
+   * @info it click method use for click on buttons
+   * @example await mainPage.click({ logins: { login: null } });
+   * @param data
+   */
   async click(data: { [k: string]: any }): Promise<void> {
+    logger.info(
+      `1: ${this.constructor.name} ${this.id} 2: params: { combineClick: { toCombine: null } }  3:cycle:for(const key of DataKeys)4:click with helping of key. this key = combineClick`
+    );
     await this.waitForRootReady();
-    const loginDataKeys = Object.keys(data);
-    for (const key of loginDataKeys) {
+    const DataKeys = Object.keys(data);
+    for (const key of DataKeys) {
       /**
        * !@info page properties should be base library elements,not fragments!
        */
@@ -63,7 +80,14 @@ class Base extends LayerBase {
     return;
   }
 
+  /**
+   * @info getData method gets data from selectors
+   * @example const result = await combinesPage.getData({ combinesRow: { producerAndBrand: null } });
+   * @param  data
+   * @returns {string|number} it returns data from selectors
+   */
   async getData(data: { [k: string]: any } = {}): Promise<{ [k: string]: any }> {
+    logger.info(`1: ${this.constructor.name} ${this.id} 2: params: {combinesRow:{combinePrice: null}} 3:cycle:for(const key of getDataKeys)4:getiong value with helping of key. this key = {combinesRow}`)
     await this.waitForRootReady();
     const DataKeys = Object.keys(data);
     const result = {};
@@ -84,7 +108,8 @@ class Base extends LayerBase {
     await this.sendKeys(data);
    */
 
-  async sendKeys(data: { [k: string]: any }): Promise<void> {
+  async sendKeys(data: {[k: string]: any}): Promise<void> {
+    logger.info(`${this.constructor.name} ${this.id}, params:  const logins = {username: admin, password:admin}, 1:param: data 1:variable:const loginDataKeys = Object.keys(data) 3:cycle:for(const key of loginDataKeys)4:sending value with helping of key. this key = {username, password}`);
     await this.waitForRootReady();
     const loginDataKeys = Object.keys(data);
     for (const key of loginDataKeys) {
